@@ -1,14 +1,10 @@
 variable "instance_name" {
-  default = ["mongodb","redis","mysql","rabbitmq","catalogue","user","cart","shipping","payment","dispatch","web"]
-}
-
-variable "instance_type" {
     type = list
-    default =  ["t2.micro", "t3.small"]
+   default = ["mongodb","redis","mysql","rabbitmq","catalogue","user","cart","shipping","payment","dispatch","web"]
 }
 
 variable "ami_id" {
-  default = "ami-03265a0778a880afb"
+  default = "ami-0b4f379183e5706b9"
 }
 
 variable "zone_id" {

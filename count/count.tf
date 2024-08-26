@@ -1,5 +1,6 @@
 resource "aws_instance" "count_roboshop" {
-  count         = 11 # count.index is special variable to use like loop 
+  #count         = 11 # count.index is special variable to use like loop 
+  count = length(var.instance_name)
   instance_type = var.instance_name[count.index] == "mongodb" || var.instance_name[count.index] == "mysql" || var.instance_name[count.index] == "redis" ? "t3.small" : "t2.micro"
   ami           = var.ami_id
   tags = {
@@ -8,7 +9,7 @@ resource "aws_instance" "count_roboshop" {
 }
 
 resource "aws_route53_record" "domain" {
-  count = 11
+  count = length(var.instance_name)
   zone_id = var.zone_id
   name    = "${var.instance_name[count.index]}.${var.domain_name}" # interpolation
   type    = "A"
